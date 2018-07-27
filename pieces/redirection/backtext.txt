@@ -1,0 +1,39 @@
+Hi Dan,
+
+I think there won't any problem with Rapidweaver. I've removed JavaScript and simplified the PHP code so that you could easily implement it in your project. The only requirement is - the software should allow you to copy-paste some PHP code in the page (index.php) and change the URL of buttons (links). 
+
+Here's what you need to do: 
+
+Place the below code at top of your index file.
+
+<!-- START PHP CODE -->
+<?php
+
+if (isset($_GET['subdomain'])) {
+
+$cookie_name = 'subdomain';
+$cookie_value = $_GET['subdomain'];
+
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+header("Location: http://$cookie_value.gotopkick.com/");
+
+}
+
+if (isset($_COOKIE['subdomain'])) {
+
+$subdomain = $_COOKIE['subdomain'];
+
+header("Location: http://$subdomain.gotopkick.com/");
+}
+
+?>
+<!-- END PHP CODE -->
+ 
+After that, you've to change the URL of buttons into this format: "?subdomain=YOURSUBDOMAINNAMEHERE".
+
+For example:
+
+The current URL of your "South Riding" button is "http://1southriding.gotopkick.com/" -  it should be changed to "?subdomain=1southriding".
+
+In the same way, you should also change the URL of other buttons (Potomac Falls, Broadlands, Purcellville, Leesburg). 
